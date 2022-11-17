@@ -80,11 +80,10 @@ For simpler uses you can also just use a text file of SRR accession codes (one p
 sradownloader SRR5413015
 ```
 
-
-Reporting Problems / Bugs
+Authors
 -------------------------
 
-You can report any problems or bugs, or add feature requests in our [issue tracker](https://github.com/s-andrews/sradownloader/issues).  You can also email simon.andrews@babraham.ac.uk.
+This repository is modification of the code developed by [Simon Anderws](https://github.com/s-andrews/sradownloader).
 
 
 
