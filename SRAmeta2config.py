@@ -28,7 +28,6 @@ def get_geo_name(srr_number,splitName=True):
         if line.startswith("Title:"):
             line = line.strip()
             geosections = re.split("[:; ,]+",line)
-            print(geosections)
             sample_name = "_".join(geosections[1:])
             break
     if splitName==True:
