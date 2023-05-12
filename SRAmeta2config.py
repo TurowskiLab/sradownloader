@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import pandas as pd
-import urllib.request
+import requests
 import re, argparse
 
 usage = "Converts SRA metafile into excel with additional data. The Excel file can be used as input for SRA_download.py"
@@ -22,15 +22,15 @@ else:
 def get_geo_name(srr_number,splitName=True):
     sample_name = ""
 
-    with urllib.request.urlopen(f"https://www.ncbi.nlm.nih.gov/sra/?term={srr_number}&format=text") as response:
-        for line in response:
-            line = line.decode("UTF-8")
-            if line.startswith("Title:"):
-                line = line.strip()
-                geosections = re.split("[:; ,]+",line)
-
-                sample_name = "_".join(geosections[1:])
-                break
+    response = requests.get(f"https://www.ncbi.nlm.nih.gov/sra/?term={srr_number}&format=text")
+    for line in response.text.splitlines():
+        # line = line.decode("UTF-8")
+        if line.startswith("Title:"):
+            line = line.strip()
+            geosections = re.split("[:; ,]+",line)
+            print(geosections)
+            sample_name = "_".join(geosections[1:])
+            break
     if splitName==True:
         sample_name = sample_name.split("_")[1:-3]
         return "_".join(sample_name)
